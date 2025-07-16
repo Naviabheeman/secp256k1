@@ -54,13 +54,6 @@ if(SECP256K1_ENABLE_MODULE_SCHNORR)
     target_sources(secp256k1 PRIVATE modules/schnorr/main_impl.h)
 endif()
 
-# We make sure __int128 is defined
-include(CheckTypeSize)
-check_type_size(__int128 SIZEOF___INT128)
-if(SIZEOF___INT128 EQUAL 16)
-    target_compile_definitions(secp256k1 PRIVATE HAVE___INT128=1)
-endif()
-
 # Detect if we are on a 32 or 64 bits platform and choose
 # scalar and field implementation accordingly
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)
